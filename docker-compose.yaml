@@ -1,0 +1,13 @@
+version: '3'
+services:
+  openvpn:
+    cap_add:
+      - NET_ADMIN
+    image: ${OPENVPN_IMAGE_NAME}
+    container_name: ${OPENVPN_CONTAINER_NAME}
+    restart: always
+    volumes:
+      - "${OPENVPN_CONFIG_DIR}:/etc/openvpn"
+    ports:
+      - "${OPENVPN_EXPOSE_PORT}:1194/udp"
+    command: "ovpn_run"
